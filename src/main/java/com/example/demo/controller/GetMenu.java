@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * 2.0
+ */
 @RequestMapping("/menu")
 @RestController
 public class GetMenu {
