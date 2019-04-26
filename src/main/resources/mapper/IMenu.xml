@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.IMenu">
+
+    <resultMap id="MenuResultMap" type="com.example.demo.po.menu" >
+        <id column="MENU_ID" property="menuId" jdbcType="INTEGER" />
+        <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" />
+        <result column="P_MENU_ID" property="pMenuId" jdbcType="INTEGER" />
+        <collection column="MENU_ID" property="routes" ofType="com.example.demo.po.menu" javaType="java.util.ArrayList" select="getchildrenmenu"/>
+    </resultMap>
+
+
+
+    <select id="getmenu"  resultMap="MenuResultMap" parameterType="int">
+        select MENU_ID,MENU_NAME,P_MENU_ID
+        from sys_menu_resource_1210
+        WHERE P_MENU_ID= #{id}
+    </select>
+
+    <select id="getchildrenmenu"  resultMap="MenuResultMap" parameterType="int">
+        select MENU_ID,MENU_NAME,P_MENU_ID
+        from sys_menu_resource_1210
+        WHERE P_MENU_ID=#{MENU_ID}
+    </select>
+</mapper>
